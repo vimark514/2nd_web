@@ -61,9 +61,6 @@ function nextPage(){
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         }
     }
-    else{
-
-    }
 }
 
 function prevPage(){
