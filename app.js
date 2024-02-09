@@ -43,25 +43,34 @@ const nextBtn = document.querySelector('#nextBtn');
 
 let counter = 0;
 const size = carouselImage[0].clientWidth;
+let x = 0;
 
 carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
 
 function nextPage(){
-    if(carouselImage[counter].id === 'firstClone'){
-        carouselSlide.style.transition = '0.5s ease';
-        counter = carouselImage.length - counter -1;
-        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-    } else {
-        carouselSlide.style.transition = '0.5s ease';
-        counter++;
-        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    x = 1;
+    if(counter < carouselImage.length){
+        if(carouselImage[counter].id === 'firstClone'){
+            carouselSlide.style.transition = '0.5s ease';
+            counter = 0;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        } else {
+            carouselSlide.style.transition = '0.5s ease';
+            counter++;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }
+    }
+    else{
+
     }
 }
 
 function prevPage(){
+    x = 1;
     if(carouselImage[counter].id === 'lastClone'){
         carouselSlide.style.transition = '0.5s ease';
+        counter = carouselImage.length - 1;
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
     } else {
         carouselSlide.style.transition = '0.5s ease';
@@ -69,6 +78,26 @@ function prevPage(){
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
     }
 }
+
+const carouselItems = document.querySelectorAll(".carousel_item");
+
+setInterval(()=> {
+    if(x === 0){
+        if(carouselImage[counter].id === 'firstClone'){
+            carouselSlide.style.transition = '0.5s ease';
+            counter = 0;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        } else {
+            carouselSlide.style.transition = '0.5s ease';
+            counter++;
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }
+    }
+    else {
+        setTimeout(1000);
+        x = 0;
+    }
+}, 3000)
 
 const carouselPage = document.querySelector('.carousel-for-pages');
 const carouselNav = document.querySelectorAll('.carousel-for-pages nav');
